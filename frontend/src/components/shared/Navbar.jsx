@@ -22,7 +22,7 @@ const Navbar = () => {
 
     const logoutHandler = async () => {
         try {
-            const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true });
+            const res = await axios.get(`${USER_API_END_POINT}/logout`, { withCredentials: true },{headers:{'Content-Type':"application/json"}});
             if (res.data.success) {
                 dispatch(setUser(null));
                 navigate('/');
@@ -30,7 +30,11 @@ const Navbar = () => {
             }
         } catch (error) {
             console.log(error);
-            toast.error(error.response.data.message);
+            if (error.response && error.response.data) {
+                toast.error(error.response.data.message);
+            } else {
+                toast.error("An unexpected error occurred. Please try again later.");
+            }
         }
     };
 
@@ -131,7 +135,8 @@ const Navbar = () => {
                         </div>
                     ) : (
                         <div className='flex flex-col items-center gap-4 mt-6'>
-                            <Button variant='link' onClick={logoutHandler}>Logout</Button>
+                            <LogOut />
+                            <Button onClick={logoutHandler} variant='link'>Logout</Button>
                         </div>
                     )}
                 </ul>
