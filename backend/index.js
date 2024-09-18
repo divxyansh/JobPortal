@@ -8,7 +8,7 @@
     import jobRoute from "./routes/job.route.js";
     import applicationRoute from "./routes/application.route.js";
     import path from "path";
-    const cors = require('cors');
+
     
     dotenv.config({});
 
@@ -18,9 +18,6 @@
 
     //middleware
     app.use(express.json());
-    app.use(cors({
-        origin: 'https://job-portal-seven-pi.vercel.app' // Allow this origin
-    }));
     app.use(express.urlencoded({extended:true}));
     app.use(cookieParser());
     const corsOptions={
