@@ -27,7 +27,7 @@
 
     app.use(cors(corsOptions));
 
-    const PORT=process.env.PORT || 3000;
+    const PORT=process.env.PORT || 5750;
 
     //APIs
     app.use("/api/v1/user", userRoute);
